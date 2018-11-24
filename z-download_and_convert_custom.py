@@ -9,8 +9,8 @@ import sys
 
 import tensorflow as tf
 
-# The URL where the peanuts data can be downloaded.
-# _DATA_URL = 'http://download.tensorflow.org/example_images/peanut_photos.tgz'
+# The URL where the customs data can be downloaded.
+# _DATA_URL = 'http://download.tensorflow.org/example_images/custom_photos.tgz'
 
 # The number of images in the validation set.
 _NUM_VALIDATION = 350
@@ -90,11 +90,11 @@ def _get_filenames_and_classes(dataset_dir):
     A list of image file paths, relative to `dataset_dir` and the list of
     subdirectories, representing class names.
   """
-  peanut_root = dataset_dir
+  custom_root = dataset_dir
   directories = []
   class_names = []
-  for filename in os.listdir(peanut_root):
-    path = os.path.join(peanut_root, filename)
+  for filename in os.listdir(custom_root):
+    path = os.path.join(custom_root, filename)
     if os.path.isdir(path):
       directories.append(path)
       class_names.append(filename)
@@ -109,7 +109,7 @@ def _get_filenames_and_classes(dataset_dir):
 
 
 def _get_dataset_filename(dataset_dir, split_name, shard_id):
-  output_filename = 'peanuts_%s_%05d-of-%05d.tfrecord' % (
+  output_filename = 'customs_%s_%05d-of-%05d.tfrecord' % (
       split_name, shard_id, _NUM_SHARDS)
   return os.path.join(dataset_dir, output_filename)
 
@@ -225,7 +225,7 @@ def run(dataset_dir):
   labels_to_class_names = dict(zip(range(len(class_names)), class_names))
   write_label_file(labels_to_class_names, dataset_dir)
 
-  print('\nFinished converting the Peanuts dataset!')
+  print('\nFinished converting the customs dataset!')
 
 
 # Main
